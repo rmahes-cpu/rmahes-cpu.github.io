@@ -29,15 +29,19 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
     }
 
+    /* ✅ Always visible top bar */
     header{
       height:56px;
       padding: 10px 12px;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
       border-bottom:1px solid var(--line);
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.90);
       backdrop-filter: blur(10px);
-      position: sticky; top:0; z-index: 20;
+      position: fixed;
+      top:0; left:0; right:0;
+      z-index: 9999;
     }
+
     .brand{display:flex; align-items:center; gap:10px; user-select:none}
     .logo{
       width:34px; height:34px; border-radius:12px;
@@ -75,12 +79,13 @@
     }
     button:disabled{opacity:.55; cursor:not-allowed}
 
+    /* ✅ main pushed below fixed header */
     main{
       height: calc(100% - 56px);
-      padding: 10px;
+      padding: 66px 10px 10px;
       max-width: 1200px;
       margin: 0 auto;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .grid{display:grid; gap:12px}
@@ -325,7 +330,7 @@
     .toast{
       position: fixed; left: 50%; transform: translateX(-50%);
       bottom: 14px;
-      z-index: 999;
+      z-index: 10000; /* above header just in case */
       background: rgba(255,255,255,.96);
       color: var(--ink);
       border:1px solid rgba(10,20,40,.16);
@@ -916,14 +921,12 @@
 
     match.history.splice(lastVisitIndex, 1);
 
-    // Recompute everything from history (simple + robust)
     const cfg = match.config;
     const rebuilt = emptyMatch();
     rebuilt.config = cfg;
     rebuilt.status = "playing";
-    rebuilt.history = match.history.slice(0); // keep remaining events
+    rebuilt.history = match.history.slice(0);
 
-    // Initialize match counters
     rebuilt.currentPlayer = 0;
     rebuilt.setNo = 1;
     rebuilt.legNo = 1;
@@ -935,7 +938,6 @@
     rebuilt.legScored = [0,0];
     rebuilt.legVisits = [[],[]];
 
-    // Walk history to rebuild live state
     for (const ev of rebuilt.history){
       if (ev.type === "leg_start"){
         rebuilt.setNo = ev.setNo;
@@ -1067,7 +1069,6 @@
       const sug = checkoutSuggestions(rem, 1);
       const currentLegAvg = match.legDarts[i] ? (match.legScored[i]/match.legDarts[i])*3 : null;
 
-      // NEW: show darts thrown this leg next to name (e.g. "Peter (12)")
       const dartsThisLeg = match.legDarts[i] ?? 0;
 
       const el = document.createElement("div");
@@ -1279,7 +1280,6 @@
     match = match ?? emptyMatch();
     match.status = "setup";
   }
-  // Ensure legs computed for existing saved matches:
   match.legs = match.legs?.length ? match.legs : computeLegsFromHistory(match);
 
   render();
