@@ -12,13 +12,6 @@
       --muted:#44506f;
       --line:rgba(10,20,40,.12);
 
-      --skyBlue1:#0b3cff;
-      --skyBlue2:#0077ff;
-      --skyBlue3:#00b5ff;
-
-      --panel:#ffffff;
-      --panel2:#f2f5ff;
-
       --good:#10b981;
       --bad:#ef4444;
       --warn:#f59e0b;
@@ -75,7 +68,6 @@
       border-color: rgba(0,119,255,.65);
       box-shadow: 0 14px 40px rgba(0,119,255,.18);
     }
-    button.ghost{background: transparent}
     button.danger{
       color:#fff;
       background: linear-gradient(180deg, rgba(239,68,68,.95), rgba(225,29,72,.92));
@@ -88,7 +80,7 @@
       padding: 10px;
       max-width: 1200px;
       margin: 0 auto;
-      overflow: hidden; /* panels handle their own scrolling */
+      overflow: hidden;
     }
 
     .grid{display:grid; gap:12px}
@@ -131,43 +123,13 @@
     }
     input:focus, select:focus{border-color: rgba(0,119,255,.55); box-shadow: 0 0 0 3px rgba(0,119,255,.12)}
 
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid rgba(10,20,40,.12);
-      border-radius: 999px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,.85);
-      color: var(--muted);
-      font-weight:850;
-      white-space:nowrap;
-    }
-    .pill b{color: var(--ink)}
-    .smallcaps{font-variant: all-small-caps; letter-spacing:.8px; opacity:.95}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
     .hint{color: var(--muted); font-size:12px; line-height:1.45}
-    .ok{color: var(--good)}
-    .no{color: var(--bad)}
-    .warn{color: var(--warn)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
 
-    /* ---------- Setup scrolls normally ---------- */
-    .setupWrap{
-      height:100%;
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 12px;
-    }
+    .setupWrap{height:100%; overflow:auto; -webkit-overflow-scrolling: touch; padding-bottom: 12px;}
 
-    /* ---------- Swipe shell (3 pages: History | Game | Stats) ---------- */
-    .swipeShell{
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      overflow:hidden;
-    }
-    .swipeHint{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
+    .swipeShell{height:100%; display:flex; flex-direction:column; gap:10px; overflow:hidden;}
+    .swipeHint{display:flex; align-items:center; justify-content:space-between; gap:10px;}
     .chip{
       display:inline-flex; align-items:center; gap:8px;
       padding: 7px 10px;
@@ -181,11 +143,7 @@
       white-space:nowrap;
     }
     .dots{display:flex; gap:7px; align-items:center}
-    .dot{
-      width:8px; height:8px; border-radius:999px;
-      border:1px solid rgba(10,20,40,.18);
-      background: rgba(10,20,40,.08);
-    }
+    .dot{width:8px; height:8px; border-radius:999px; border:1px solid rgba(10,20,40,.18); background: rgba(10,20,40,.08);}
     .dot.active{ background: rgba(0,119,255,.35); border-color: rgba(0,119,255,.55); }
 
     .swipeWrap{
@@ -197,7 +155,6 @@
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       border-radius: 20px;
-      scroll-padding: 0;
     }
     .swipePanel{
       min-width: 100%;
@@ -209,7 +166,6 @@
       overflow: hidden;
     }
 
-    /* On desktop: show columns and allow vertical page scroll */
     @media (min-width: 980px){
       main{ height:auto; min-height: calc(100vh - 56px); overflow: visible; }
       .swipeShell{ height:auto; overflow: visible; }
@@ -222,14 +178,7 @@
       .swipePanel{ min-width:auto; height:auto; overflow: visible; }
     }
 
-    /* ---------- GAME panel: compact two-up player boxes ---------- */
-    .playerRow{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      align-items:stretch;
-    }
-
+    .playerRow{display:grid; grid-template-columns: 1fr 1fr; gap:10px; align-items:stretch;}
     .playerMini{
       border-radius: 16px;
       border:1px solid rgba(10,20,40,.12);
@@ -249,7 +198,13 @@
       letter-spacing:.2px;
       font-size: 12.5px;
       overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-      max-width: 44vw;
+      max-width: 56vw;
+    }
+    .miniName span{
+      font-weight:950;
+      opacity:.92;
+      font-size: 11px;
+      margin-left: 6px;
     }
     .turnPill{
       display:inline-flex; align-items:center; gap:7px;
@@ -258,6 +213,7 @@
       border:1px solid rgba(255,255,255,.25);
       font-size:10px; font-weight:1000; letter-spacing:.6px;
       min-width: 62px; justify-content:center;
+      flex: 0 0 auto;
     }
     .turnDot{
       width:7px; height:7px; border-radius:999px;
@@ -272,13 +228,7 @@
         linear-gradient(180deg, rgba(255,255,255,.98), rgba(242,245,255,.92));
     }
     .miniRemainLbl{font-size:10px; font-weight:950; letter-spacing:.35px; color: var(--muted); text-transform:uppercase}
-    .miniRemainVal{
-      font-size: 34px;
-      font-weight: 1100;
-      line-height: 1;
-      letter-spacing:.3px;
-      margin-top: 2px;
-    }
+    .miniRemainVal{font-size: 34px; font-weight: 1100; line-height: 1; letter-spacing:.3px; margin-top: 2px;}
     .miniKpis{
       margin-top: 8px;
       display:grid;
@@ -307,21 +257,17 @@
     .checkoutCompact .mono{font-weight:950; color: var(--ink)}
     .checkoutCompact .lbl{font-size:9px; font-weight:950; letter-spacing:.35px; text-transform:uppercase; color: var(--muted); margin-bottom:3px}
 
-    /* Smaller on tiny phones */
-    @media (max-width: 380px){
-      .miniRemainVal{font-size: 30px}
-      .miniKpi .v{font-size: 11px}
-      .miniName{font-size: 12px}
+    .actionsRow{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      padding: 0 4px;
+      margin-top: 0;
     }
 
-    /* ---------- Entry bar: sticky bottom INSIDE Game panel; focusable big input ---------- */
-    .entryShell{
-      margin-top: auto; /* push to bottom */
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
+    .entryShell{margin-top: 0; display:flex; flex-direction:column; gap:0;}
     .entryBar{
+      margin-top: 0;
       border-radius: 16px;
       border:1px solid rgba(10,20,40,.12);
       background: rgba(255,255,255,.92);
@@ -336,23 +282,7 @@
     .entryBar input{padding: 12px 10px}
     .entryBtn{flex: 0 0 auto}
 
-    .scoreTap{
-      border-radius: 14px;
-      border:1px dashed rgba(0,119,255,.35);
-      background: rgba(0,119,255,.06);
-      padding: 9px 10px;
-      font-size: 12px;
-      font-weight: 850;
-      color: var(--muted);
-    }
-
-    /* ---------- History panel (vertical scroll allowed) ---------- */
-    .scrollCard{
-      flex: 1;
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-      padding-right: 2px;
-    }
+    .scrollCard{flex: 1; overflow:auto; -webkit-overflow-scrolling: touch; padding-right: 2px;}
     .event{
       border-radius: 14px;
       border:1px solid rgba(10,20,40,.10);
@@ -365,75 +295,31 @@
     .event .main{font-weight:950}
     .event .meta{font-size:12px; color: var(--muted)}
 
-    /* ---------- Stats panel: two-up, vertical scroll allowed ---------- */
-    .statsWrap{
-      flex: 1;
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .statsTwoUp{
+    .statsTable{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .statsCard{
-      border-radius: 16px;
-      border:1px solid rgba(10,20,40,.12);
-      background: rgba(255,255,255,.95);
-      box-shadow: 0 12px 30px rgba(10,20,40,.08);
-      padding: 10px;
-      overflow:hidden;
-      min-width:0;
-    }
-    .statsHead{
-      display:flex; align-items:center; justify-content:space-between; gap:8px;
-      margin-bottom: 8px;
-    }
-    .statsName{
-      font-weight:1100;
-      font-size: 13px;
-      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-      min-width:0;
-    }
-    .statsBadge{
-      font-size:10px;
-      font-weight:1000;
-      color: #fff;
-      padding: 6px 8px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(0,119,255,.95), rgba(11,60,255,.92));
-      border:1px solid rgba(0,119,255,.55);
-      white-space:nowrap;
-    }
-    .statRow{
-      display:flex; align-items:baseline; justify-content:space-between; gap:8px;
-      border:1px solid rgba(10,20,40,.08);
-      background: rgba(242,245,255,.75);
-      border-radius: 12px;
-      padding: 7px 8px;
-      margin-bottom: 6px;
-      min-width:0;
-    }
-    .statRow .k{
-      font-size:10px;
-      font-weight:950;
-      color: var(--muted);
-      letter-spacing:.35px;
-      text-transform:uppercase;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 62%;
-    }
-    .statRow .v{
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap:6px;
       font-size:12px;
-      font-weight:1100;
-      text-align:right;
-      white-space:nowrap;
     }
-    @media (max-width: 380px){
-      .statRow .k{font-size: 9px}
-      .statRow .v{font-size: 11px}
+    .statsHeader{
+      font-weight:1000;
+      background: rgba(0,119,255,.12);
+      border-radius:10px;
+      padding:8px;
+      text-align:center;
+      border:1px solid rgba(10,20,40,.08);
+    }
+    .statsHeader.name{ text-align:left; }
+    .statCell{
+      padding:7px 8px;
+      border-radius:10px;
+      background: rgba(242,245,255,.8);
+      border:1px solid rgba(10,20,40,.08);
+    }
+    .statName{ font-weight:900; color: var(--muted); }
+    .statVal{ text-align:center; font-weight:1000; }
+    @media (max-width: 420px){
+      .statsTable{font-size:11px}
     }
 
     .toast{
@@ -460,8 +346,6 @@
     <h1>DARTS <span>Scoreboard</span></h1>
   </div>
   <div class="btns">
-    <button class="ghost" id="btnNew">New</button>
-    <button class="ghost" id="btnExport">Export</button>
     <button class="danger" id="btnResetAll">Reset</button>
   </div>
 </header>
@@ -516,16 +400,14 @@
           <div class="divider"></div>
 
           <div class="row between">
-            <div class="hint">Rules: <b>double-out</b> · bust on &lt;0 or 1 · finish on a double (incl. <b>BULL</b>).</div>
+            <div class="hint">Exact remaining auto-finishes the leg.</div>
             <button class="primary" id="btnStart">Start</button>
           </div>
         </div>
 
         <div class="card">
           <h2>Phone navigation</h2>
-          <div class="hint">
-            While playing: swipe <b>left</b> for <b>History</b>, stay in the middle for <b>Game</b>, swipe <b>right</b> for <b>Stats</b>.
-          </div>
+          <div class="hint">Swipe <b>left</b> for <b>History</b>, middle for <b>Game</b>, swipe <b>right</b> for <b>Stats</b>.</div>
         </div>
       </div>
     </div>
@@ -548,48 +430,19 @@
       </div>
 
       <div id="swipeWrap" class="swipeWrap">
-        <!-- Panel 0: HISTORY (left) -->
+        <!-- Panel 0: HISTORY -->
         <div class="swipePanel">
-          <div class="card">
-            <div class="row between">
-              <div class="row" style="gap:8px;">
-                <span class="pill"><span class="smallcaps">Set</span> <b id="hSetNo">1</b></span>
-                <span class="pill"><span class="smallcaps">Leg</span> <b id="hLegNo">1</b></span>
-              </div>
-              <div class="hint">Swipe right to return to game.</div>
-            </div>
-          </div>
-
           <div class="card scrollCard">
             <h2>Score history</h2>
             <div id="historyList"></div>
           </div>
         </div>
 
-        <!-- Panel 1: GAME (middle) -->
+        <!-- Panel 1: GAME -->
         <div class="swipePanel">
-          <div class="card" style="padding:12px;">
-            <div class="row between">
-              <div class="row" style="gap:8px;">
-                <span class="pill"><span class="smallcaps">Start</span> <b id="uiStartScore">501</b></span>
-                <span class="pill"><span class="smallcaps">Sets</span> <b id="uiSetsToWin">1</b></span>
-                <span class="pill"><span class="smallcaps">Legs</span> <b id="uiLegsToWin">3</b></span>
-                <span class="pill"><span class="smallcaps">Set</span> <b id="uiSetNo">1</b></span>
-                <span class="pill"><span class="smallcaps">Leg</span> <b id="uiLegNo">1</b></span>
-              </div>
-              <div class="row" style="justify-content:flex-end;">
-                <button id="btnUndo">Undo</button>
-                <button class="ghost" id="btnEndLeg">End leg</button>
-                <button class="danger" id="btnNewMatch">New</button>
-              </div>
-            </div>
-          </div>
-
           <div id="playersPanel" class="playerRow"></div>
 
           <div class="entryShell">
-            <div class="scoreTap" id="tapToScore">Tap here to type the next score (keeps keyboard open).</div>
-
             <div class="entryBar">
               <div class="field">
                 <label>Score</label>
@@ -603,39 +456,22 @@
                 <label>Dub att</label>
                 <input id="dblAtt" type="number" inputmode="numeric" min="0" max="3" step="1" value="0" />
               </div>
-              <div class="field" style="max-width:72px;">
-                <label>Hit</label>
-                <input id="dblHit" type="number" inputmode="numeric" min="0" max="1" step="1" value="0" />
-              </div>
               <button class="primary entryBtn" id="btnSubmit">Go</button>
             </div>
+          </div>
 
-            <div class="hint">
-              Checkout: set <b>Hit=1</b>. Missed doubles: set <b>Dub att</b>. Swipe left for history, right for stats.
-            </div>
+          <div class="actionsRow">
+            <button id="btnUndo">Undo</button>
           </div>
 
           <div class="toast" id="toast"></div>
         </div>
 
-        <!-- Panel 2: STATS (right) -->
+        <!-- Panel 2: STATS -->
         <div class="swipePanel">
-          <div class="card">
-            <div class="row between">
-              <div class="row" style="gap:8px;">
-                <span class="pill"><span class="smallcaps">Set</span> <b id="sSetNo">1</b></span>
-                <span class="pill"><span class="smallcaps">Leg</span> <b id="sLegNo">1</b></span>
-              </div>
-              <div class="hint">Swipe left to return to game.</div>
-            </div>
-          </div>
-
-          <div class="card statsWrap">
+          <div class="card scrollCard">
             <h2>Statistics</h2>
-            <div id="statsTwoUp" class="statsTwoUp"></div>
-            <div class="hint" style="margin-top:10px;">
-              “Checkout %” = legs won where you recorded at least one double attempt in that leg.
-            </div>
+            <div id="statsTable" class="statsTable"></div>
           </div>
         </div>
       </div>
@@ -645,28 +481,14 @@
 
 <script>
 (() => {
-  const STORAGE_KEY = "darts_scoreboard_v5";
-
+  const STORAGE_KEY = "darts_scoreboard_v12";
   const $ = (id) => document.getElementById(id);
 
   const setupView = $("setupView");
   const gameView  = $("gameView");
 
-  const uiStartScore = $("uiStartScore");
-  const uiSetsToWin  = $("uiSetsToWin");
-  const uiLegsToWin  = $("uiLegsToWin");
-  const uiSetNo      = $("uiSetNo");
-  const uiLegNo      = $("uiLegNo");
-
-  const hSetNo = $("hSetNo");
-  const hLegNo = $("hLegNo");
-  const sSetNo = $("sSetNo");
-  const sLegNo = $("sLegNo");
-
   const playersPanel = $("playersPanel");
   const historyList  = $("historyList");
-  const statsTwoUpEl = $("statsTwoUp");
-
   const toastEl = $("toast");
 
   const startScoreEl = $("startScore");
@@ -678,24 +500,16 @@
   const visitScoreEl = $("visitScore");
   const visitDartsEl = $("visitDarts");
   const dblAttEl     = $("dblAtt");
-  const dblHitEl     = $("dblHit");
 
   const btnStart     = $("btnStart");
   const btnSubmit    = $("btnSubmit");
   const btnUndo      = $("btnUndo");
-  const btnEndLeg    = $("btnEndLeg");
-  const btnNewMatch  = $("btnNewMatch");
-  const btnNew       = $("btnNew");
-  const btnExport    = $("btnExport");
   const btnResetAll  = $("btnResetAll");
-  const tapToScore   = $("tapToScore");
 
   const swipeWrap = $("swipeWrap");
-  const dot0 = $("dot0");
-  const dot1 = $("dot1");
-  const dot2 = $("dot2");
+  const dot0 = $("dot0"), dot1 = $("dot1"), dot2 = $("dot2");
 
-  // ---------- Checkout table (BULL) ----------
+  // ---------- Checkout suggestions (BULL) ----------
   const TARGETS = [];
   const addTarget = (code, value, isDouble=false) => TARGETS.push({code,value,isDouble});
   for (let i=1;i<=20;i++) addTarget(String(i), i, false);
@@ -705,7 +519,7 @@
   for (let i=1;i<=20;i++) addTarget("T"+i, i*3, false);
 
   const CHECKOUTS = new Map();
-  function genCheckouts(){
+  (function genCheckouts(){
     const doubles = TARGETS.filter(t => t.isDouble);
     const all = TARGETS;
 
@@ -750,13 +564,12 @@
         return x.localeCompare(y);
       });
     }
-  }
-  genCheckouts();
+  })();
 
   // ---------- State ----------
   function emptyMatch(){
     return {
-      version: 5,
+      version: 12,
       config: null,
       status: "setup",
 
@@ -789,17 +602,6 @@
 
   // ---------- Helpers ----------
   const nowISO = () => new Date().toISOString();
-
-  function toast(msg, kind=""){
-    toastEl.textContent = msg;
-    toastEl.className = "toast show";
-    if (kind === "bad") toastEl.style.borderColor = "rgba(239,68,68,.45)";
-    else if (kind === "good") toastEl.style.borderColor = "rgba(16,185,129,.45)";
-    else if (kind === "warn") toastEl.style.borderColor = "rgba(245,158,11,.55)";
-    else toastEl.style.borderColor = "rgba(10,20,40,.16)";
-    setTimeout(() => toastEl.className = "toast", 2200);
-  }
-
   const clampInt = (v, min, max) => {
     const n = Number(v);
     if (!Number.isFinite(n)) return null;
@@ -807,7 +609,6 @@
     if (i < min || i > max) return null;
     return i;
   };
-
   const fmt = (x, digits=2) => (typeof x === "number" && Number.isFinite(x)) ? x.toFixed(digits) : "—";
   const activeIdx = () => match.currentPlayer;
   const otherIdx = () => 1 - match.currentPlayer;
@@ -817,19 +618,25 @@
 
   function escapeHtml(s){
     return String(s)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  }
+
+  function toast(msg, kind=""){
+    toastEl.textContent = msg;
+    toastEl.className = "toast show";
+    if (kind === "bad") toastEl.style.borderColor = "rgba(239,68,68,.45)";
+    else if (kind === "good") toastEl.style.borderColor = "rgba(16,185,129,.45)";
+    else if (kind === "warn") toastEl.style.borderColor = "rgba(245,158,11,.55)";
+    else toastEl.style.borderColor = "rgba(10,20,40,.16)";
+    setTimeout(() => toastEl.className = "toast", 2000);
   }
 
   function focusScoreInput(){
-    // Mobile browsers may only show keyboard on user gesture; we do best-effort focus.
     visitScoreEl.focus({preventScroll:true});
   }
 
-  // ---------- Lifecycle ----------
+  // ---------- Match flow ----------
   function startNewMatch(config){
     match = emptyMatch();
     match.config = config;
@@ -852,11 +659,8 @@
 
     save();
     render();
-
-    // Jump to GAME (middle) page
     snapToPanel(1, false);
     resetVisitInputs(true);
-
     toast("Match started!", "good");
   }
 
@@ -906,19 +710,19 @@
   }
 
   function calcDoublesInLeg(){
-    const att = [0,0], hit=[0,0];
+    const att = [0,0];
     for (let i = match.history.length-1; i>=0; i--){
       const ev = match.history[i];
       if (ev.type === "leg_start") break;
-      if (ev.type === "visit"){
-        att[ev.player] += ev.doubleAttempts;
-        hit[ev.player] += ev.doubleHit ? 1 : 0;
-      }
+      if (ev.type === "visit") att[ev.player] += ev.doubleAttempts;
     }
-    return { att, hit };
+    return { att };
   }
 
   function endLeg(winnerIdx, forced=false){
+    const winnerName = match.config.players[winnerIdx].name;
+    const winnerDarts = match.legDarts[winnerIdx];
+
     const first9 = [calcFirst9(0), calcFirst9(1)];
     const doubles = calcDoublesInLeg();
     const checkoutAttempts = [doubles.att[0] > 0 ? 1 : 0, doubles.att[1] > 0 ? 1 : 0];
@@ -938,7 +742,6 @@
     });
 
     match.history.push({ type:"leg_end", ts: nowISO(), setNo: match.setNo, legNo: match.legNo, winner: winnerIdx, forced });
-
     match.legsWonInSet[winnerIdx] += 1;
 
     if (match.legsWonInSet[winnerIdx] >= match.config.legsToWin){
@@ -948,18 +751,21 @@
       if (match.setsWon[winnerIdx] >= match.config.setsToWin){
         finishMatch(winnerIdx);
         render();
-        toast(`${match.config.players[winnerIdx].name} wins the match!`, "good");
+        toast(`${winnerName} wins the match!`, "good");
         return;
       }
+
       beginNextSet();
       render();
-      toast(`${match.config.players[winnerIdx].name} wins the set!`, "good");
+      const nextStarterName = match.config.players[match.legStarter].name;
+      toast(`${winnerName} wins the leg in ${winnerDarts} darts. ${nextStarterName} throws first. Game on!`, "good");
       return;
     }
 
     beginNextLeg();
     render();
-    toast(`${match.config.players[winnerIdx].name} wins the leg!`, "good");
+    const nextStarterName = match.config.players[match.legStarter].name;
+    toast(`${winnerName} wins the leg in ${winnerDarts} darts. ${nextStarterName} throws first. Game on!`, "good");
   }
 
   // ---------- Scoring ----------
@@ -970,13 +776,10 @@
     const score = clampInt(visitScoreEl.value, 0, 180);
     const dartsUsed = clampInt(visitDartsEl.value, 1, 3);
     const dblAtt = clampInt(dblAttEl.value, 0, 3);
-    const dblHit = clampInt(dblHitEl.value, 0, 1);
 
     if (score === null){ toast("Enter a valid score (0–180).", "bad"); return; }
     if (dartsUsed === null){ toast("Darts must be 1–3.", "bad"); return; }
     if (dblAtt === null){ toast("Double attempts must be 0–3.", "bad"); return; }
-    if (dblHit === null){ toast("Hit must be 0 or 1.", "bad"); return; }
-    if (dblHit === 1 && dblAtt === 0){ toast("If Hit=1, set Dub att at least 1.", "warn"); return; }
 
     const prev = match.remaining[p];
     const next = prev - score;
@@ -985,10 +788,7 @@
     let checkout = false;
 
     if (next < 0 || next === 1) bust = true;
-    if (next === 0){
-      if (dblHit !== 1) bust = true;
-      else checkout = true;
-    }
+    if (next === 0) checkout = true;
 
     match.history.push({
       type:"visit",
@@ -1000,7 +800,6 @@
       score,
       dartsUsed,
       doubleAttempts: dblAtt,
-      doubleHit: dblHit,
       bust,
       checkout
     });
@@ -1038,17 +837,72 @@
     visitScoreEl.value = "";
     visitDartsEl.value = "3";
     dblAttEl.value = "0";
-    dblHitEl.value = "0";
     if (tryFocus) focusScoreInput();
   }
 
-  function forceEndLeg(){
-    if (match.status !== "playing") return;
-    const r0 = match.remaining[0], r1 = match.remaining[1];
-    let winner = 0;
-    if (r1 < r0) winner = 1;
-    else if (r1 === r0) winner = (match.legScored[1] > match.legScored[0]) ? 1 : 0;
-    endLeg(winner, true);
+  // ---------- Undo ----------
+  function computeLegsFromHistory(m){
+    const legs = [];
+    let legStartIndex = -1;
+    let legStarter = 0;
+
+    let legDarts = [0,0];
+    let legScored = [0,0];
+    let legVisits = [[],[]];
+    let setNo = 1, legNo = 1;
+
+    const calcFirst9 = (p) => {
+      const v = legVisits[p].slice(0,3);
+      if (v.length < 3) return null;
+      const scored = v.reduce((a,b)=>a+b,0);
+      return (scored/9)*3;
+    };
+
+    for (let i=0;i<m.history.length;i++){
+      const ev = m.history[i];
+      if (ev.type === "leg_start"){
+        legStartIndex = i;
+        setNo = ev.setNo; legNo = ev.legNo; legStarter = ev.starter;
+        legDarts = [0,0]; legScored = [0,0]; legVisits = [[],[]];
+      }
+      if (ev.type === "visit"){
+        const p = ev.player;
+        legDarts[p] += ev.dartsUsed;
+        if (!ev.bust){
+          legScored[p] += ev.score;
+          legVisits[p].push(ev.score);
+        } else {
+          legVisits[p].push(0);
+        }
+      }
+      if (ev.type === "leg_end" && legStartIndex !== -1){
+        const doubles = (() => {
+          const att=[0,0];
+          for (let j=i; j>=0; j--){
+            const e2 = m.history[j];
+            if (e2.type === "leg_start") break;
+            if (e2.type === "visit") att[e2.player] += e2.doubleAttempts;
+          }
+          return {att};
+        })();
+        const first9 = [calcFirst9(0), calcFirst9(1)];
+        const checkoutAttempts = [doubles.att[0]>0?1:0, doubles.att[1]>0?1:0];
+
+        legs.push({
+          ts: ev.ts,
+          setNo, legNo, starter: legStarter,
+          winner: ev.winner,
+          forced: ev.forced,
+          darts: [legDarts[0], legDarts[1]],
+          scored: [legScored[0], legScored[1]],
+          first9,
+          doubles,
+          checkoutAttempts
+        });
+        legStartIndex = -1;
+      }
+    }
+    return legs;
   }
 
   function undo(){
@@ -1060,108 +914,65 @@
     })();
     if (lastVisitIndex === -1){ toast("Nothing to undo.", "warn"); return; }
 
-    const fullHistory = match.history.slice();
-    const rebuilt = emptyMatch();
-    rebuilt.config = match.config;
-    rebuilt.status = "playing";
+    match.history.splice(lastVisitIndex, 1);
 
+    // Recompute everything from history (simple + robust)
+    const cfg = match.config;
+    const rebuilt = emptyMatch();
+    rebuilt.config = cfg;
+    rebuilt.status = "playing";
+    rebuilt.history = match.history.slice(0); // keep remaining events
+
+    // Initialize match counters
     rebuilt.currentPlayer = 0;
     rebuilt.setNo = 1;
     rebuilt.legNo = 1;
     rebuilt.setsWon = [0,0];
     rebuilt.legsWonInSet = [0,0];
-
     rebuilt.legStarter = 0;
-    rebuilt.remaining = [rebuilt.config.startScore, rebuilt.config.startScore];
+    rebuilt.remaining = [cfg.startScore, cfg.startScore];
     rebuilt.legDarts = [0,0];
     rebuilt.legScored = [0,0];
     rebuilt.legVisits = [[],[]];
 
-    const resetLeg = (starter) => {
-      rebuilt.legStarter = starter;
-      rebuilt.currentPlayer = starter;
-      rebuilt.remaining = [rebuilt.config.startScore, rebuilt.config.startScore];
-      rebuilt.legDarts = [0,0];
-      rebuilt.legScored = [0,0];
-      rebuilt.legVisits = [[],[]];
-    };
-
-    for (let i=0;i<fullHistory.length;i++){
-      if (i === lastVisitIndex) break;
-      const ev = fullHistory[i];
-
-      if (ev.type === "match_start"){
-        rebuilt.history.push(ev);
-      } else if (ev.type === "set_start"){
-        rebuilt.setNo = ev.setNo;
-        rebuilt.legNo = 1;
-        rebuilt.legsWonInSet = [0,0];
-        rebuilt.history.push(ev);
-      } else if (ev.type === "leg_start"){
+    // Walk history to rebuild live state
+    for (const ev of rebuilt.history){
+      if (ev.type === "leg_start"){
         rebuilt.setNo = ev.setNo;
         rebuilt.legNo = ev.legNo;
-        resetLeg(ev.starter);
-        rebuilt.history.push(ev);
-      } else if (ev.type === "visit"){
-        rebuilt.history.push(ev);
+        rebuilt.legStarter = ev.starter;
+        rebuilt.currentPlayer = ev.starter;
+        rebuilt.remaining = [cfg.startScore, cfg.startScore];
+        rebuilt.legDarts = [0,0];
+        rebuilt.legScored = [0,0];
+        rebuilt.legVisits = [[],[]];
+      }
+      if (ev.type === "visit"){
         const p = ev.player;
         rebuilt.legDarts[p] += ev.dartsUsed;
-
-        if (!ev.bust){
+        if (ev.bust){
+          rebuilt.legVisits[p].push(0);
+          rebuilt.currentPlayer = 1 - p;
+        } else {
           rebuilt.remaining[p] = ev.prevRemaining - ev.score;
           rebuilt.legScored[p] += ev.score;
           rebuilt.legVisits[p].push(ev.score);
-        } else {
-          rebuilt.legVisits[p].push(0);
+          if (!ev.checkout) rebuilt.currentPlayer = 1 - p;
         }
-
-        if (!ev.checkout){
-          rebuilt.currentPlayer = 1 - p;
-        }
-      } else if (ev.type === "leg_end"){
-        const doubles = (() => {
-          const att=[0,0], hit=[0,0];
-          for (let j=rebuilt.history.length-1; j>=0; j--){
-            const e2 = rebuilt.history[j];
-            if (e2.type === "leg_start") break;
-            if (e2.type === "visit"){
-              att[e2.player] += e2.doubleAttempts;
-              hit[e2.player] += e2.doubleHit ? 1 : 0;
-            }
-          }
-          return {att, hit};
-        })();
-
-        const first9 = [
-          (rebuilt.legVisits[0].slice(0,3).length===3) ? (rebuilt.legVisits[0].slice(0,3).reduce((a,b)=>a+b,0)/9)*3 : null,
-          (rebuilt.legVisits[1].slice(0,3).length===3) ? (rebuilt.legVisits[1].slice(0,3).reduce((a,b)=>a+b,0)/9)*3 : null
-        ];
-        const checkoutAttempts = [doubles.att[0]>0?1:0, doubles.att[1]>0?1:0];
-
-        rebuilt.legs.push({
-          ts: ev.ts,
-          setNo: ev.setNo,
-          legNo: ev.legNo,
-          starter: rebuilt.legStarter,
-          winner: ev.winner,
-          forced: ev.forced,
-          darts: [rebuilt.legDarts[0], rebuilt.legDarts[1]],
-          scored: [rebuilt.legScored[0], rebuilt.legScored[1]],
-          first9,
-          doubles,
-          checkoutAttempts
-        });
-
+      }
+      if (ev.type === "leg_end"){
         rebuilt.legsWonInSet[ev.winner] += 1;
-        rebuilt.history.push(ev);
-      } else if (ev.type === "set_end"){
+      }
+      if (ev.type === "set_end"){
         rebuilt.setsWon[ev.winner] += 1;
-        rebuilt.history.push(ev);
-      } else if (ev.type === "match_end"){
+        rebuilt.legsWonInSet = [0,0];
+      }
+      if (ev.type === "match_end"){
         rebuilt.status = "finished";
-        rebuilt.history.push(ev);
       }
     }
+
+    rebuilt.legs = computeLegsFromHistory(rebuilt);
 
     match = rebuilt;
     save();
@@ -1177,12 +988,11 @@
     let totalScored = 0;
     let totalDarts = 0;
     let c60=0,c100=0,c140=0,c170=0,c180=0;
-    let doubleAtt=0, doubleHit=0;
+    let doubleAtt=0;
 
     for (const v of visits){
       totalDarts += v.dartsUsed;
       doubleAtt += v.doubleAttempts;
-      doubleHit += (v.doubleHit ? 1 : 0);
 
       const pts = v.bust ? 0 : v.score;
       totalScored += pts;
@@ -1210,7 +1020,6 @@
 
     const lastLeg = legsAll.length ? legsAll[legsAll.length - 1] : null;
     const previousLegAvg = lastLeg ? (lastLeg.darts[playerIdx] ? (lastLeg.scored[playerIdx]/lastLeg.darts[playerIdx])*3 : null) : null;
-
     const currentLegAvg = match.legDarts[playerIdx] ? (match.legScored[playerIdx]/match.legDarts[playerIdx])*3 : null;
 
     const legDartsTotal = legsAll.reduce((a,L)=>a+(L.darts[playerIdx]||0),0);
@@ -1229,8 +1038,6 @@
     const checkoutSuccess = legsAll.reduce((a,L)=>a+((L.checkoutAttempts?.[playerIdx] ? 1 : 0) && L.winner===playerIdx ? 1 : 0),0);
     const checkoutPct = checkoutAttempts ? (checkoutSuccess/checkoutAttempts)*100 : null;
 
-    const doublePct = doubleAtt ? (doubleHit/doubleAtt)*100 : null;
-
     let first9Sum=0, first9Count=0;
     for (const L of legsAll){
       const f = L.first9?.[playerIdx];
@@ -1244,40 +1051,14 @@
     return {
       totalScored, legsWonTotal, matchAvg, completedLegAvg,
       bestLegAvg, worstLegAvg, previousLegAvg, currentLegAvg,
-      checkoutPct, checkoutSuccess, checkoutAttempts,
-      doublePct, doubleHit, doubleAtt,
+      checkoutPct,
+      doubleAtt,
       breaks, avgDartsPerLeg, bestLegDarts,
       first9Avg, c60,c100,c140,c170,c180
     };
   }
 
-  // ---------- Rendering ----------
-  function render(){
-    if (!match || match.status === "setup" || !match.config){
-      setupView.style.display = "block";
-      gameView.style.display = "none";
-      return;
-    }
-    setupView.style.display = "none";
-    gameView.style.display = "block";
-
-    uiStartScore.textContent = match.config.startScore;
-    uiSetsToWin.textContent = match.config.setsToWin;
-    uiLegsToWin.textContent = match.config.legsToWin;
-    uiSetNo.textContent = match.setNo;
-    uiLegNo.textContent = match.legNo;
-
-    hSetNo.textContent = match.setNo;
-    hLegNo.textContent = match.legNo;
-    sSetNo.textContent = match.setNo;
-    sLegNo.textContent = match.legNo;
-
-    renderPlayers();
-    renderHistory();
-    renderStats();
-    updateDots();
-  }
-
+  // ---------- Render ----------
   function renderPlayers(){
     playersPanel.innerHTML = "";
     for (let i=0;i<2;i++){
@@ -1286,11 +1067,14 @@
       const sug = checkoutSuggestions(rem, 1);
       const currentLegAvg = match.legDarts[i] ? (match.legScored[i]/match.legDarts[i])*3 : null;
 
+      // NEW: show darts thrown this leg next to name (e.g. "Peter (12)")
+      const dartsThisLeg = match.legDarts[i] ?? 0;
+
       const el = document.createElement("div");
       el.className = "playerMini";
       el.innerHTML = `
         <div class="miniTop">
-          <div class="miniName">${escapeHtml(match.config.players[i].name)}</div>
+          <div class="miniName">${escapeHtml(match.config.players[i].name)} <span>(${dartsThisLeg})</span></div>
           <div class="turnPill">${isActive ? `<span class="turnDot"></span> TURN` : `&nbsp;`}</div>
         </div>
         <div class="miniBody">
@@ -1314,10 +1098,9 @@
   }
 
   function renderHistory(){
-    // show compact, newest first
     const events = match.history.slice().reverse().filter(e =>
       ["visit","leg_end","set_end","match_end","match_start"].includes(e.type)
-    ).slice(0, 120);
+    ).slice(0, 200);
 
     historyList.innerHTML = "";
     if (!events.length){
@@ -1331,22 +1114,21 @@
 
       if (ev.type === "visit"){
         const name = match.config.players[ev.player].name;
-        const cls = ev.checkout ? "ok" : ev.bust ? "no" : "";
         const label = ev.checkout ? "CHECKOUT" : ev.bust ? "BUST" : "VISIT";
         const after = ev.bust ? ev.prevRemaining : (ev.prevRemaining - ev.score);
 
         div.innerHTML = `
           <div class="top">
-            <div class="main ${cls}">${escapeHtml(name)}: ${ev.score} <span class="meta">(${label})</span></div>
+            <div class="main">${escapeHtml(name)}: ${ev.score} <span class="meta">(${label})</span></div>
             <div class="meta">S${ev.setNo} L${ev.legNo}</div>
           </div>
-          <div class="meta">Remaining: ${ev.prevRemaining} → ${after} · Darts: ${ev.dartsUsed} · Doubles: ${ev.doubleHit ? "<span class='ok'>HIT</span>" : "—"} / ${ev.doubleAttempts} att</div>
+          <div class="meta">Remaining: ${ev.prevRemaining} → ${after} · Darts: ${ev.dartsUsed} · Double att: ${ev.doubleAttempts}</div>
         `;
       } else if (ev.type === "leg_end"){
         const name = match.config.players[ev.winner].name;
         div.innerHTML = `
           <div class="top">
-            <div class="main ${ev.forced ? "warn" : "ok"}">Leg won by ${escapeHtml(name)} ${ev.forced ? "<span class='meta'>(forced)</span>" : ""}</div>
+            <div class="main">Leg won by ${escapeHtml(name)}</div>
             <div class="meta">S${ev.setNo} L${ev.legNo}</div>
           </div>
         `;
@@ -1354,7 +1136,7 @@
         const name = match.config.players[ev.winner].name;
         div.innerHTML = `
           <div class="top">
-            <div class="main ok">Set ${ev.setNo} won by ${escapeHtml(name)}</div>
+            <div class="main">Set ${ev.setNo} won by ${escapeHtml(name)}</div>
             <div class="meta">—</div>
           </div>
         `;
@@ -1370,7 +1152,7 @@
         const name = match.config.players[ev.winner].name;
         div.innerHTML = `
           <div class="top">
-            <div class="main ok">Match won by ${escapeHtml(name)}</div>
+            <div class="main">Match won by ${escapeHtml(name)}</div>
             <div class="meta">Final</div>
           </div>
         `;
@@ -1380,49 +1162,69 @@
     }
   }
 
-  function statRow(k, v){
-    return `<div class="statRow"><div class="k" title="${escapeHtml(k)}">${escapeHtml(k)}</div><div class="v">${v}</div></div>`;
-  }
-
   function renderStats(){
     const s0 = buildPlayerStats(0);
     const s1 = buildPlayerStats(1);
 
-    const pct = (x) => (x==null ? "—" : `${fmt(x,1)}%`);
-    const dbl = (hit, att) => (att ? `${fmt((hit/att)*100,1)}%` : "—");
+    const p0 = match.config.players[0].name;
+    const p1 = match.config.players[1].name;
 
-    const renderOne = (idx, s) => {
-      const name = match.config.players[idx].name;
-      return `
-        <div class="statsCard">
-          <div class="statsHead">
-            <div class="statsName">${escapeHtml(name)}</div>
-            <div class="statsBadge">S${match.setsWon[idx]} · L${match.legsWonInSet[idx]}</div>
-          </div>
-          ${statRow("Score", `<span class="mono">${s.totalScored}</span>`)}
-          ${statRow("Legs won (total)", `<span class="mono">${s.legsWonTotal}</span>`)}
-          ${statRow("Match avg", `<span class="mono">${fmt(s.matchAvg)}</span>`)}
-          ${statRow("Leg avg (completed)", `<span class="mono">${fmt(s.completedLegAvg)}</span>`)}
-          ${statRow("Best leg avg", `<span class="mono">${fmt(s.bestLegAvg)}</span>`)}
-          ${statRow("Worst leg avg", `<span class="mono">${fmt(s.worstLegAvg)}</span>`)}
-          ${statRow("Previous leg avg", `<span class="mono">${fmt(s.previousLegAvg)}</span>`)}
-          ${statRow("Current leg avg", `<span class="mono">${fmt(s.currentLegAvg)}</span>`)}
-          ${statRow("Checkout %", `<span class="mono">${pct(s.checkoutPct)}</span> <span class="mono" style="opacity:.7">(${s.checkoutSuccess}/${s.checkoutAttempts})</span>`)}
-          ${statRow("Double %", `<span class="mono">${dbl(s.doubleHit, s.doubleAtt)}</span> <span class="mono" style="opacity:.7">(${s.doubleHit}/${s.doubleAtt})</span>`)}
-          ${statRow("Breaks", `<span class="mono">${s.breaks}</span>`)}
-          ${statRow("Avg darts / leg", `<span class="mono">${fmt(s.avgDartsPerLeg,2)}</span>`)}
-          ${statRow("Best leg darts (won)", `<span class="mono">${s.bestLegDarts ?? "—"}</span>`)}
-          ${statRow("First 9 avg", `<span class="mono">${fmt(s.first9Avg)}</span>`)}
-          ${statRow("60+ / 100+ / 140+", `<span class="mono">${s.c60} / ${s.c100} / ${s.c140}</span>`)}
-          ${statRow("170+ / 180s", `<span class="mono">${s.c170} / ${s.c180}</span>`)}
-        </div>
+    const fmtPct = (v) => v == null ? "—" : `${v.toFixed(1)}%`;
+    const fmtNum = (v) => v == null ? "—" : v.toFixed(2);
+
+    const rows = [
+      ["Score", s0.totalScored, s1.totalScored],
+      ["Legs won (total)", s0.legsWonTotal, s1.legsWonTotal],
+      ["Match average", fmtNum(s0.matchAvg), fmtNum(s1.matchAvg)],
+      ["Leg average", fmtNum(s0.completedLegAvg), fmtNum(s1.completedLegAvg)],
+      ["Best leg avg", fmtNum(s0.bestLegAvg), fmtNum(s1.bestLegAvg)],
+      ["Worst leg avg", fmtNum(s0.worstLegAvg), fmtNum(s1.worstLegAvg)],
+      ["Previous leg avg", fmtNum(s0.previousLegAvg), fmtNum(s1.previousLegAvg)],
+      ["Current leg avg", fmtNum(s0.currentLegAvg), fmtNum(s1.currentLegAvg)],
+      ["Checkout %", fmtPct(s0.checkoutPct), fmtPct(s1.checkoutPct)],
+      ["Double attempts", s0.doubleAtt, s1.doubleAtt],
+      ["Breaks", s0.breaks, s1.breaks],
+      ["Avg darts / leg", fmtNum(s0.avgDartsPerLeg), fmtNum(s1.avgDartsPerLeg)],
+      ["Best leg darts", s0.bestLegDarts ?? "—", s1.bestLegDarts ?? "—"],
+      ["First 9 avg", fmtNum(s0.first9Avg), fmtNum(s1.first9Avg)],
+      ["60+ / 100+ / 140+", `${s0.c60}/${s0.c100}/${s0.c140}`, `${s1.c60}/${s1.c100}/${s1.c140}`],
+      ["170+ / 180s", `${s0.c170}/${s0.c180}`, `${s1.c170}/${s1.c180}`]
+    ];
+
+    let html = `
+      <div class="statsHeader name">Statistic</div>
+      <div class="statsHeader">${escapeHtml(p0)}</div>
+      <div class="statsHeader">${escapeHtml(p1)}</div>
+    `;
+
+    for (const [name, v0, v1] of rows){
+      html += `
+        <div class="statCell statName">${escapeHtml(name)}</div>
+        <div class="statCell statVal">${escapeHtml(v0)}</div>
+        <div class="statCell statVal">${escapeHtml(v1)}</div>
       `;
-    };
+    }
 
-    statsTwoUpEl.innerHTML = renderOne(0, s0) + renderOne(1, s1);
+    $("statsTable").innerHTML = html;
   }
 
-  // ---------- Swipe / dots (3 pages) ----------
+  function render(){
+    if (!match || match.status === "setup" || !match.config){
+      setupView.style.display = "block";
+      gameView.style.display = "none";
+      return;
+    }
+    setupView.style.display = "none";
+    gameView.style.display = "block";
+
+    renderPlayers();
+    renderHistory();
+    renderStats();
+
+    btnUndo.disabled = (match.status !== "playing") || !match.history.some(e => e.type === "visit");
+  }
+
+  // ---------- Swipe dots ----------
   function updateDots(){
     const x = swipeWrap.scrollLeft;
     const w = swipeWrap.clientWidth || 1;
@@ -1431,31 +1233,19 @@
     dot1.classList.toggle("active", idx === 1);
     dot2.classList.toggle("active", idx === 2);
   }
-
   function snapToPanel(index, smooth=true){
     const w = swipeWrap.clientWidth || 1;
     swipeWrap.scrollTo({ left: index * w, behavior: smooth ? "smooth" : "instant" });
   }
-
   swipeWrap.addEventListener("scroll", updateDots, {passive:true});
   window.addEventListener("resize", () => {
-    // keep current panel aligned on resize
     const w = swipeWrap.clientWidth || 1;
     const idx = Math.round(swipeWrap.scrollLeft / w);
     snapToPanel(idx, false);
     updateDots();
   });
 
-  // If user swipes away from game, stop forcing focus.
-  function currentPanelIndex(){
-    const w = swipeWrap.clientWidth || 1;
-    return Math.round(swipeWrap.scrollLeft / w);
-  }
-
   // ---------- UI actions ----------
-  tapToScore.addEventListener("click", () => focusScoreInput());
-  playersPanel.addEventListener("click", () => focusScoreInput());
-
   btnStart.addEventListener("click", () => {
     const startScore = clampInt(startScoreEl.value, 101, 5000) ?? 501;
     const setsToWin = clampInt(setsToWinEl.value, 1, 99);
@@ -1463,59 +1253,18 @@
     const p1 = (p1NameEl.value || "Player 1").trim();
     const p2 = (p2NameEl.value || "Player 2").trim();
 
-    if (!setsToWin || !legsToWin){ toast("Sets/legs must be >= 1.", "bad"); return; }
-    if (!p1 || !p2){ toast("Enter both player names.", "bad"); return; }
+    if (!setsToWin || !legsToWin) { toast("Sets/legs must be >= 1.", "bad"); return; }
+    if (!p1 || !p2) { toast("Enter both player names.", "bad"); return; }
 
     startNewMatch({ startScore, setsToWin, legsToWin, players:[{name:p1},{name:p2}] });
   });
 
-  btnSubmit.addEventListener("click", () => {
-    submitVisit();
-    // Keep the keyboard up by re-focusing if we’re still on game panel.
-    if (currentPanelIndex() === 1) focusScoreInput();
-  });
-
+  btnSubmit.addEventListener("click", () => { submitVisit(); focusScoreInput(); });
   visitScoreEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter"){
-      submitVisit();
-      if (currentPanelIndex() === 1) focusScoreInput();
-    }
+    if (e.key === "Enter"){ submitVisit(); focusScoreInput(); }
   });
 
-  btnUndo.addEventListener("click", () => { undo(); if (currentPanelIndex() === 1) focusScoreInput(); });
-  btnEndLeg.addEventListener("click", () => { forceEndLeg(); if (currentPanelIndex() === 1) focusScoreInput(); });
-
-  btnNewMatch.addEventListener("click", () => {
-    match = emptyMatch();
-    match.status = "setup";
-    save();
-    render();
-    toast("New match setup.", "good");
-  });
-
-  btnNew.addEventListener("click", () => {
-    match = emptyMatch();
-    match.status = "setup";
-    save();
-    render();
-  });
-
-  btnExport.addEventListener("click", () => {
-    try{
-      const blob = new Blob([JSON.stringify(match, null, 2)], {type:"application/json"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "darts-match.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      toast("Exported JSON.", "good");
-    }catch(_){
-      toast("Export failed.", "bad");
-    }
-  });
+  btnUndo.addEventListener("click", () => { undo(); focusScoreInput(); });
 
   btnResetAll.addEventListener("click", () => {
     localStorage.removeItem(STORAGE_KEY);
@@ -1530,18 +1279,14 @@
     match = match ?? emptyMatch();
     match.status = "setup";
   }
+  // Ensure legs computed for existing saved matches:
+  match.legs = match.legs?.length ? match.legs : computeLegsFromHistory(match);
 
-  function renderAndCenterGameIfPlaying(){
-    render();
-    if (match.status !== "setup" && match.config){
-      // Default view is the middle (Game).
-      snapToPanel(1, false);
-      // Best effort: focus so the keyboard pops when user has interacted (or after start).
-      setTimeout(() => focusScoreInput(), 50);
-    }
+  render();
+  if (match.status !== "setup" && match.config){
+    snapToPanel(1, false);
+    setTimeout(() => focusScoreInput(), 60);
   }
-
-  renderAndCenterGameIfPlaying();
 })();
 </script>
 </body>
